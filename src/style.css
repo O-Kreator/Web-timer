@@ -1,0 +1,177 @@
+/* Variables */
+
+body {
+    --color-background: rgb(255, 255, 255);
+    --color-background-stop: rgb(180, 180, 186);
+    --color-text: rgb(60, 60, 60);
+
+    --style-shadow:0 0 0 0 var(--color-text) inset;
+    --style-shadow-hover:0 0 0 8px var(--color-text) inset;
+
+    --space-xs: .25rem;
+    --space-s: .5rem;
+    --space-r: 1rem;
+    --space-l: 1.5rem;
+    --space-xl: 2rem;
+
+    --time-short: .1s;
+    --time-long: .2s;
+}
+
+body.dark-theme {
+    --color-background: rgb(0, 0, 0);
+    --color-background-stop: rgb(60, 60, 66);
+    --color-text: rgb(180, 180, 186);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --color-background: rgb(0, 0, 0);
+        --color-background-stop: rgb(60, 60, 66);
+        --color-text: rgb(180, 180, 186);
+    }
+
+    body.light-theme {
+        --color-background: rgb(255, 255, 255);
+        --color-background-stop: rgb(180, 180, 186);
+        --color-text: rgb(60, 60, 60); 
+    }
+}
+
+
+
+/* Reset */
+
+* {
+    user-select: none;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+}
+
+html, input, button, textarea {
+    color: var(--color-text);
+    font-size: 32px;
+    font-family: 'Space Mono', monospace;
+}
+
+html {
+    transition-property: font-size;
+    transition-duration: var(--time-long);
+}
+
+@media (max-width: 480px) {
+    html, input, button, textarea {
+        font-size: 24px;
+    }
+}
+
+
+/* Making contents center */
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+}
+
+
+/* Styling wrapper */
+
+body {
+    background-color: var(--color-background);
+
+    transition-property: background-color;
+    transition-duration: var(--time-long);
+}
+
+body.stop {
+    background-color: var(--color-background-stop);
+}
+
+#timerButton {
+    position: relative;
+    top: 0;
+
+    padding: var(--space-r) var(--space-l);
+
+    text-align: center;
+    white-space: nowrap;
+
+    color: var(--color-text);
+    background-color: transparent;
+    border: 2px solid var(--color-text);
+    border-radius: var(--space-r);
+    box-shadow: var(--style-shadow);
+
+    transition-property: padding, font-size, top, color, background-color, box-shadow;
+    transition-duration: var(--time-short);
+
+    cursor: pointer;
+}
+
+#timerButton:hover, #timerButton:focus {
+    box-shadow: var(--style-shadow-hover);
+}
+
+#timerButton:active {
+    top: var(--space-xs);
+
+    color: var(--color-background);
+    background-color: var(--color-text);
+}
+
+
+/* Timer text */
+
+#timerText > span.divider {
+    position: relative;
+    bottom: .1rem;
+}
+
+
+/* Dark mode Button */
+
+#darkModeButton {
+    position: absolute;
+    top: var(--space-s);
+    right: var(--space-s);
+    width: var(--space-xl);
+    height: var(--space-xl);
+
+    font-size: .75rem;
+
+    color: var(--color-text);
+    background-color: transparent;
+    border: 2px solid var(--color-text);
+    border-radius: var(--space-r);
+    box-shadow: var(--style-shadow);
+
+    transition-property: top, right, width, height, padding, font-size, color, background-color, box-shadow;
+    transition-duration: var(--time-short);
+
+    cursor: pointer;
+}
+
+#darkModeButton:hover, #darkModeButton:focus {
+    box-shadow: var(--style-shadow-hover);
+}
+
+#darkModeButton:active {
+    color: var(--color-background);
+    background-color: var(--color-text);
+}
