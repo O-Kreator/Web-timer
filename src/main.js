@@ -149,8 +149,6 @@ const eventFunc = {
   mouseUp() {
     clearInterval(mouseDownInterval);
     
-    console.log("hello!");
-    
     if (status.isPressed)
     {
       eventFunc.reset();
