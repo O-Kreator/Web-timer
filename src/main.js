@@ -37,7 +37,7 @@ else if (status.currentTheme == "light")
 /* Time */
 
 const data = {
-  ms = 0
+  ms: 0
 };
 
 
