@@ -181,6 +181,21 @@ DOM.button.addEventListener("mousedown", eventFunc.mouseDown);
 DOM.body.addEventListener("mouseup", eventFunc.mouseUp);
 DOM.body.addEventListener("mouseleave", eventFunc.mouseUp);
 
+DOM.button.addEventListener("touchstart", eventFunc.mouseDown);
+DOM.button.addEventListener("pointerdown", eventFunc.mouseDown);
+DOM.body.addEventListener("touchend", event => {
+  event.preventDefault();
+  eventFunc.mouseUp();
+})
+DOM.body.addEventListener("touchcancel", event => {
+  event.preventDefault();
+  eventFunc.mouseUp();
+})
+DOM.body.addEventListener("pointercancel", event => {
+  event.preventDefault();
+  eventFunc.mouseUp();
+})
+
 window.addEventListener("keydown", event => {
   if (event.key == CONST_KEY_SPACE)
     eventFunc.toggleStatus();
