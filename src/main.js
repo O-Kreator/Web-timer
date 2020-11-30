@@ -36,18 +36,18 @@ else if (status.currentTheme == "light")
 
 /* Time */
 
-const data = {};
-
-data.ms = 0;
+const data = {
+  ms = 0
+};
 
 
 /* Text */
 
-const text = {};
-
-text.h = "00";
-text.m = "00";
-text.s = "00";
+const text = {
+  h: "00",
+  m: "00",
+  s: "00"
+};
 
 
 /* Event Function */
