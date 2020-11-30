@@ -69,7 +69,10 @@ html {
     }
 }
 
-
+button {
+  border: none;
+  outline: none;
+}
 /* Making contents center */
 
 html {
