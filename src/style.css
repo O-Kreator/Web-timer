@@ -4,6 +4,7 @@ body {
     --color-background: rgb(255, 255, 255);
     --color-background-stop: rgb(180, 180, 186);
     --color-text: rgb(60, 60, 60);
+    --color-red: rgb(220, 70, 70);
 
     --style-shadow:0 0 0 0 var(--color-text) inset;
     --style-shadow-hover:0 0 0 8px var(--color-text) inset;
@@ -104,6 +105,7 @@ body.stop {
 }
 
 #timerButton {
+    display: block;
     position: relative;
     top: 0;
 
@@ -138,9 +140,62 @@ body.stop {
 
 /* Timer text */
 
-#timerText > span.divider {
+#timerText > span {
     position: relative;
+    z-index: 2;
+}
+
+#timerText > span.divider {
     bottom: .1rem;
+}
+
+
+/* Reset indicator */
+
+#timerFillRed {
+    z-index: 1;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+
+    opacity: 0;
+
+    background-color: var(--color-red);
+    border-radius: var(--space-r);
+
+    transition-property: opacity;
+    transition-duration: var(--time-long);
+}
+
+
+/* Description */
+
+#description {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--space-xs);
+
+    color: var(--color-text);
+    font-size: .4rem;
+    text-align: center;
+
+    transition-property: font-size;
+    transition-duration: var(--time-short);
+}
+
+#description > p {
+    margin: 0;
+
+    white-space: nowrap;
+}
+
+@media (min-width: 641px) {
+    #description > p {
+        display: inline;
+    }
 }
 
 
