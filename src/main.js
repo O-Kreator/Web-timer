@@ -57,20 +57,21 @@ const eventFunc = {
     data.ms += CONST_DELTA_MS;
   },
   getText() {
+    const returnText = value => {
+      if (value < 10)
+        return "0" + value;
+      else
+        return String(value);
+    }
+
     const h = parseInt(data.ms / CONST_HOUR_MS);
-    text.h = h;
-    if (h < 10)
-      text.h = "0" + text.h;
+    text.h = returnText(h);
     
     const m = parseInt(data.ms % CONST_HOUR_MS / CONST_MIN_MS);
-    text.m = m;
-    if (m < 10)
-      text.m = "0" + text.m;
+    text.m = returnText(m);
     
     const s = parseInt(data.ms % CONST_MIN_MS / CONST_SEC_MS);
-    text.s = s;
-    if (s < 10)
-      text.s = "0" + text.s;
+    text.s = returnText(s);
   },
   showText() {
     DOM.h.innerText = text.h;
