@@ -148,6 +148,9 @@ const eventFunc = {
   },
   mouseUp() {
     clearInterval(mouseDownInterval);
+    
+    console.log("hello!");
+    
     if (status.isPressed)
     {
       eventFunc.reset();
@@ -174,31 +177,38 @@ const eventFunc = {
 
 setInterval(eventFunc.interval, CONST_DELTA_MS);
 
-DOM.button.addEventListener("click", eventFunc.toggleStatus);
-DOM.darkModeButton.addEventListener("click", eventFunc.toggleTheme);
+DOM.button.addEventListener("click", eventFunc.toggleStatus, true);
+DOM.darkModeButton.addEventListener("click", eventFunc.toggleTheme, true);
 
-DOM.button.addEventListener("mousedown", eventFunc.mouseDown);
-DOM.body.addEventListener("mouseup", eventFunc.mouseUp);
-DOM.body.addEventListener("mouseleave", eventFunc.mouseUp);
+if (window.PointerEvent) {
+  DOM.button.addEventListener("pointerdown", eventFunc.mouseDown, true);
+  DOM.body.addEventListener("pointerup", event => {
+    event.preventDefault();
+    eventFunc.mouseUp();
+  }, true);
+  DOM.body.addEventListener("pointercancel", event => {
+    event.preventDefault();
+    eventFunc.mouseUp();
+  }, true);
+} else {
+  DOM.button.addEventListener("touchstart", eventFunc.mouseDown);
+  DOM.body.addEventListener("touchend", event => {
+    event.preventDefault();
+    eventFunc.mouseUp();
+  }, true);
+  DOM.body.addEventListener("touchcancel", event => {
+    event.preventDefault();
+    eventFunc.mouseUp();
+  }, true);
 
-DOM.button.addEventListener("touchstart", eventFunc.mouseDown);
-DOM.button.addEventListener("pointerdown", eventFunc.mouseDown);
-DOM.body.addEventListener("touchend", event => {
-  event.preventDefault();
-  eventFunc.keyDownR();
-})
-DOM.body.addEventListener("touchcancel", event => {
-  event.preventDefault();
-  eventFunc.keyDownR();
-})
-DOM.body.addEventListener("pointercancel", event => {
-  event.preventDefault();
-  eventFunc.keyDownR();
-})
+  DOM.button.addEventListener("mousedown", eventFunc.mouseDown, true);
+  DOM.body.addEventListener("mouseup", eventFunc.mouseUp, true);
+  DOM.body.addEventListener("mouseleave", eventFunc.mouseUp, true);
+}
 
 window.addEventListener("keydown", event => {
   if (event.key == CONST_KEY_SPACE)
     eventFunc.toggleStatus();
   if (event.key == CONST_KEY_R_UPPER || event.key == CONST_KEY_R_LOWER)
     eventFunc.keyDownR();
-})
+}, true)
