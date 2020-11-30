@@ -185,15 +185,15 @@ DOM.button.addEventListener("touchstart", eventFunc.mouseDown);
 DOM.button.addEventListener("pointerdown", eventFunc.mouseDown);
 DOM.body.addEventListener("touchend", event => {
   event.preventDefault();
-  eventFunc.mouseUp();
+  eventFunc.keyDownR();
 })
 DOM.body.addEventListener("touchcancel", event => {
   event.preventDefault();
-  eventFunc.mouseUp();
+  eventFunc.keyDownR();
 })
 DOM.body.addEventListener("pointercancel", event => {
   event.preventDefault();
-  eventFunc.mouseUp();
+  eventFunc.keyDownR();
 })
 
 window.addEventListener("keydown", event => {
